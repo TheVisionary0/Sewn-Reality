@@ -5,13 +5,13 @@
   <title>Case Files</title>
 
   <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <style>
     body {
       background-color: #050505;
       color: #fff;
-      font-family: 'Rubik Glitch', cursive;
+      font-family: 'Press Start 2P', monospace;
       text-align: center;
       margin: 0;
       padding: 40px;
@@ -20,15 +20,32 @@
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 40px;
       margin-bottom: 50px;
       text-shadow: 0 0 10px red;
-      position: relative;
-      z-index: 2;
     }
 
-    /* CASE FILES */
+    /* Background eyes container */
+    .bg-eyes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-eyes img {
+      position: absolute;
+      width: 60px;
+      opacity: 0.15;
+    }
+
+    /* Case files */
     .casefile {
+      position: relative;
+      z-index: 2;
       display: inline-block;
       margin: 30px;
       border: 2px solid #333;
@@ -38,14 +55,11 @@
       height: 400px;
       cursor: pointer;
       transition: 0.3s;
-      position: relative;
-      z-index: 2;
-      background: black;
     }
 
     .casefile:hover {
       border-color: red;
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
     .casefile img {
@@ -54,69 +68,49 @@
       object-fit: cover;
     }
 
-    /* BACKGROUND EYES (FIXED) */
-    .bg-eye {
-      position: fixed;
-      width: 60px;
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Random positions */
-    .e1 { top: 10%; left: 5%; }
-    .e2 { top: 70%; left: 80%; }
-    .e3 { top: 40%; left: 20%; }
-    .e4 { top: 80%; left: 40%; }
-    .e5 { top: 25%; left: 75%; }
-
-    /* OVERLAY */
+    /* Overlay */
     #overlay {
       position: fixed;
-      top:0; left:0;
-      width:100%; height:100%;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
       background: rgba(0,0,0,0.95);
       display:none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       z-index: 999;
-      font-size: 22px;
-      color: #aaa;
+      font-size: 26px;
+      color: #ccc;
+      padding: 20px;
     }
 
     #overlay img {
       max-width: 90%;
-      max-height: 70%;
-      margin-bottom: 20px;
+      max-height: 65%;
+      margin-bottom: 30px;
       box-shadow: 0 0 20px red;
     }
 
-    /* SECRET CLICKABLE EYE (SUBTLE NOW) */
+    /* Secret eye (subtle now) */
     .secret-eye {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
+      width: 80px;
+      margin-top: 80px;
       opacity: 0.25;
       cursor: pointer;
       z-index: 2;
-      transition: opacity 0.3s;
+      position: relative;
     }
 
-    .secret-eye:hover {
-      opacity: 0.4; /* VERY subtle */
-      transform: none; /* no zoom */
-    }
-
-    /* POPUP */
+    /* Popup */
     #secretBox {
       position: fixed;
       top:0;
       left:0;
       width:100%;
       height:100%;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       display:none;
       justify-content: center;
       align-items: center;
@@ -125,7 +119,7 @@
 
     .secretContent {
       background: #111;
-      padding: 30px;
+      padding: 40px;
       border: 2px solid red;
       position: relative;
     }
@@ -135,31 +129,48 @@
       top: 10px;
       right: 15px;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    .secretContent h2 {
+      font-size: 16px;
+      margin-bottom: 20px;
     }
 
     .secretContent input {
-      padding: 10px;
-      margin-top: 15px;
+      padding: 15px;
+      margin-top: 10px;
       background: black;
       color: white;
       border: 1px solid white;
+      font-family: 'Press Start 2P', monospace;
     }
+
+    .secretContent button {
+      margin-top: 15px;
+      padding: 10px;
+      font-family: 'Press Start 2P', monospace;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Background eyes -->
-  <img src="eye.png" class="bg-eye e1">
-  <img src="eye.png" class="bg-eye e2">
-  <img src="eye.png" class="bg-eye e3">
-  <img src="eye.png" class="bg-eye e4">
-  <img src="eye.png" class="bg-eye e5">
+  <!-- BACKGROUND EYES -->
+  <div class="bg-eyes">
+    <img src="eye.png" style="top:10%; left:5%;">
+    <img src="eye.png" style="top:30%; left:70%;">
+    <img src="eye.png" style="top:60%; left:20%;">
+    <img src="eye.png" style="top:80%; left:50%;">
+    <img src="eye.png" style="top:40%; left:85%;">
+    <img src="eye.png" style="top:75%; left:75%;">
+  </div>
 
   <h1>Case Files</h1>
 
-  <!-- Case Files -->
+  <!-- Case files -->
   <div class="casefile" onclick="openOverlay('Case_001.png','PUT IN LINK...')">
     <img src="Case_001.png">
   </div>
@@ -172,22 +183,23 @@
     <img src="Case_003.png">
   </div>
 
-  <!-- SECRET EYE -->
+  <!-- Secret eye -->
   <img src="eye.png" class="secret-eye" onclick="openSecret()">
 
-  <!-- OVERLAY -->
+  <!-- Overlay -->
   <div id="overlay" onclick="closeOverlay()">
     <img id="overlay-img">
     <div id="overlay-text"></div>
   </div>
 
-  <!-- SECRET BOX -->
+  <!-- Secret popup -->
   <div id="secretBox">
     <div class="secretContent">
       <span class="closeBtn" onclick="closeSecret()">X</span>
-      <h2>...</h2>
-      <input type="password" id="secretInput" placeholder="Enter code">
-      <button onclick="checkSecret()">Enter</button>
+      <h2>ENTER CODE</h2>
+      <input type="password" id="secretInput">
+      <br>
+      <button onclick="checkSecret()">ENTER</button>
     </div>
   </div>
 
@@ -216,7 +228,7 @@
       if (input.value === "001011018") {
         window.location.href = "001011018/";
       } else {
-        input.value = "Wrong";
+        input.value = "WRONG";
         input.style.color = "red";
 
         setTimeout(() => {
