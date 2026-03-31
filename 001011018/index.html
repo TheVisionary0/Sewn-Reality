@@ -25,7 +25,7 @@
       text-shadow: 0 0 15px red;
     }
 
-    .logfile {
+    .logfile, .newspaper {
       display: inline-block;
       margin: 30px;
       border: 2px solid #333;
@@ -39,12 +39,12 @@
       z-index: 2;
     }
 
-    .logfile:hover {
+    .logfile:hover, .newspaper:hover {
       border-color: red;
       transform: scale(1.05);
     }
 
-    .logfile img {
+    .logfile img, .newspaper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -88,12 +88,23 @@
       color: white;
     }
 
-    /* Subtle background eyes */
+    /* Background eyes */
     .bg-eye {
       position: absolute;
       width: 60px;
       opacity: 0.1;
       pointer-events: none;
+    }
+
+    /* Final eye */
+    .final-eye {
+      width: 80px;
+      margin-top: 60px;
+      opacity: 0.25;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
   </style>
@@ -123,6 +134,18 @@
     <img src="log_003.png">
   </div>
 
+  <!-- Newspapers -->
+  <div class="newspaper" onclick="openOverlay('newspaper_001.png', 'Missing Person: Subject 004…', '')">
+    <img src="newspaper_001.png">
+  </div>
+
+  <div class="newspaper" onclick="openOverlay('newspaper_002.png', 'Missing Person: Subject 015…', '')">
+    <img src="newspaper_002.png">
+  </div>
+
+  <!-- Final visionary eye -->
+  <img src="../eye.png" class="final-eye" onclick="goFinal()">
+
   <!-- Overlay -->
   <div id="overlay">
     <span class="closeBtn" onclick="closeOverlay()">X</span>
@@ -135,9 +158,18 @@
     function openOverlay(imgSrc, text, audioSrc) {
       document.getElementById('overlay-img').src = imgSrc;
       document.getElementById('overlay-text').textContent = text;
+
       const audio = document.getElementById('overlay-audio');
-      audio.src = audioSrc;
-      audio.play();
+      if(audioSrc){
+        audio.src = audioSrc;
+        audio.play();
+        audio.style.display = "block";
+      } else {
+        audio.pause();
+        audio.src = "";
+        audio.style.display = "none";
+      }
+
       document.getElementById('overlay').style.display = 'flex';
     }
 
@@ -146,6 +178,10 @@
       audio.pause();
       audio.currentTime = 0;
       document.getElementById('overlay').style.display = 'none';
+    }
+
+    function goFinal() {
+      window.location.href = "../visionary.html"; // replace with your final page URL
     }
   </script>
 
