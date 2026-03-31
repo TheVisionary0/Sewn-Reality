@@ -24,8 +24,14 @@
       text-shadow: 0 0 10px red;
     }
 
-    /* Log images */
-    .log {
+    h2 {
+      margin-top: 50px;
+      font-size: 20px;
+      color: #aaa;
+    }
+
+    /* Images (logs + newspapers) */
+    .item {
       width: 250px;
       margin: 30px;
       cursor: pointer;
@@ -34,7 +40,7 @@
       transition: 0.2s;
     }
 
-    .log:hover {
+    .item:hover {
       border-color: red;
       transform: scale(1.05);
     }
@@ -92,9 +98,15 @@
   <h1>Observation Logs</h1>
 
   <!-- Logs -->
-  <img src="log1.png" class="log" onclick="openPopup(this)">
-  <img src="log2.png" class="log" onclick="openPopup(this)">
-  <img src="log3.png" class="log" onclick="openPopup(this)">
+  <img src="log1.png" class="item" onclick="openPopup(this)">
+  <img src="log2.png" class="item" onclick="openPopup(this)">
+  <img src="log3.png" class="item" onclick="openPopup(this)">
+
+  <h2>Recovered Articles</h2>
+
+  <!-- Newspapers -->
+  <img src="newspaper_001.png" class="item" onclick="openPopup(this)">
+  <img src="newspaper_002.png" class="item" onclick="openPopup(this)">
 
   <!-- Background eyes -->
   <img src="eye.png" class="bg-eye" style="top:10%; left:5%;">
